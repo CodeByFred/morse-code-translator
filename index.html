@@ -5,13 +5,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Morse Code Translator</title>
-    <link rel="stylesheet" href="./style.css">
-    <script src="./main.js"></script>
+    <link rel="stylesheet" href="./css/style.css">
+    <script src='./js/main.js'></script>
 </head>
 
 <body>
+    <header>
+        <h1>Morse Code Translator</h1>
+        <h2>-- --- .-. ... . | -.-. --- -.. . | - .-. .- -. ... .-.. .- - --- .-.</h2>
+    </header>
     <main>
+        <div class="input">
+            <textarea name="inputText" id="inputText" placeholder="Input Goes Here..." required></textarea>
+            <h2>Input</h2>
+        </div>
+        <button>Translate</button>
 
+        <div class="output">
+            <textarea name="outputText" id="outputText" placeholder="Output Comes Here..." readonly></textarea>
+            <h2>Output</h2>
+        </div>
     </main>
 </body>
 

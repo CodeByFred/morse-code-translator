@@ -1,4 +1,4 @@
-import { inputToMorse } from "../js/translator.js";
+import { inputToMorse, morseToText } from "../js/translator.js";
 
 describe("Translates only alphabetic characters to Morse code", () => {
   test("Should translate one word", () => {
@@ -9,5 +9,11 @@ describe("Translates only alphabetic characters to Morse code", () => {
     expect(inputToMorse("Fred Jack")).toBe(
       "..-. .-. . -..  |  .--- .- -.-. -.-"
     );
+  });
+});
+
+describe("Translates Morse code to text", () => {
+  test("Should translate one character of Morse to text", () => {
+    expect(morseToText(".-")).toBe("A");
   });
 });

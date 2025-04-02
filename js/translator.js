@@ -48,3 +48,9 @@ export const inputToMorse = (input) => {
     .map((ch) => morseCodeCharacters[ch] || "")
     .join(" ");
 };
+
+export const morseToText = (morse) => {
+  return Object.keys(morseCodeCharacters).find(
+    (key) => morseCodeCharacters[key] === morse
+  );
+};

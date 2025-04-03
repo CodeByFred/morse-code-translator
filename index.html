@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Morse Code Translator</title>
     <link rel="stylesheet" href="./css/style.css">
-    <script src='./js/main.js'></script>
+    <script src='./js/main.js' defer type="module"></script>
 </head>
 
 <body>
@@ -16,7 +16,8 @@
     </header>
     <main>
         <div class="input">
-            <textarea name="inputText" id="inputText" placeholder="Input Goes Here..." required></textarea>
+            <textarea name="inputText" id="inputText" placeholder="Input Goes Here..." autocomplete="off"
+                required></textarea>
             <h2>Input</h2>
         </div>
         <button>Translate</button>

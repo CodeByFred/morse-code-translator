@@ -1,4 +1,4 @@
-import { invalidCharacters } from "../test/translator.test";
+// import { invalidCharacters } from "../test/translator.test.js";
 
 const morseCodeCharacters = {
   A: ".-",

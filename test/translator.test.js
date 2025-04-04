@@ -29,10 +29,10 @@ describe("Translates only alphabetic characters to Morse code", () => {
 });
 
 describe("Throws error when given unacceptable input", () => {
-  test("Should throw error when given punctuation at start of input", () => {
+  test("Should throw error when given mixed input", () => {
     expect(() => {
-      inputToMorse("? This is text");
-    }).toThrow(invalidOrderOfInput);
+      inputToMorse(". This is --- text");
+    }).toThrow(invalidCharacters);
   });
 
   test("Should throw error when given non-accepted input", () => {
@@ -54,18 +54,16 @@ describe("Translates Morse code to text", () => {
 
   test("Should translate multiple words of Morse into text", () => {
     expect(
-      morseToText(
-        "-- --- .-. ... . | -.-. --- -.. . | - .-. .- -. ... .-.. .- - --- .-."
-      )
+      morseToText("-- --- .-. ... . | -.-. --- -.. . | - .-. .- -. ... .-.. .- - --- .-.")
     ).toBe("MORSE CODE TRANSLATOR");
   });
 
-  test("Should translate characters, letters and|or punctuation into text", () => {
+  test("Should translate characters, letters and/or punctuation into text", () => {
     expect(
       morseToText(
-        ".... . .-.. .-.. --- --..--  |  .. .----. -- .-.-.-  |  ..-. .-. . -.. ..--.."
+        ".... . .-.. .-.. --- --..-- | .. .----. -- .-.-.- | ..-. .-. . -.. ..--.."
       )
-    ).toBe(`HELLO, I'M. FRED?`);
+    ).toBe("HELLO, I'M. FRED?");
   });
 });
 

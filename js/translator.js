@@ -1,10 +1,4 @@
-export const invalidCharacters = new Error(
-  "You have entered invalid characters"
-);
-
-export const invalidOrderOfInput = new Error(
-  "You cannot put punctuation at the start of input"
-);
+export const invalidCharacters = new Error("You have entered invalid characters");
 
 const morseCodeCharacters = {
   A: ".-",
@@ -50,18 +44,33 @@ const morseCodeCharacters = {
   " ": "|", // space between words
 };
 
+/* 
+input -> string
+
+1. convert each letter to uppercase 
+2. split text into array of characters
+3. iterate over each character to covert character to Morse code character
+4. throw error if character is not in object/dictionary
+5. join Morse code characters together separated by a space
+6. return string
+ */
 export const inputToMorse = (text) => {
-  return text
-    .toUpperCase()
-    .split("")
-    .map((ch) => morseCodeCharacters[ch] || "")
-    .join(" ");
+  const textArr = text.toUpperCase().split("");
+  const morse = [];
+
+  for (let character of textArr) {
+    let foundChar = morseCodeCharacters[character];
+    if (foundChar === undefined) throw invalidCharacters;
+    else morse.push(foundChar);
+  }
+
+  return morse.join(" ");
 };
 
 /* 
 input -> string
 
-1. split string into words on '|';
+1. split string into words on ' ';
 2. iterate over each word to convert each character from Morse to text
 3. throw error if invalid character
 4. concatenate each word back to a sentence
@@ -73,11 +82,11 @@ export const morseToText = (morse) => {
   const text = [];
 
   for (let character of morseArr) {
-    text.push(
-      Object.keys(morseCodeCharacters).find(
-        (ch) => morseCodeCharacters[ch] === character
-      )
+    let foundChar = Object.keys(morseCodeCharacters).find(
+      (ch) => morseCodeCharacters[ch] === character
     );
+    if (foundChar === undefined) throw invalidCharacters;
+    else text.push(foundChar);
   }
   return text.join("");
 };
@@ -98,6 +107,8 @@ checking first index to see if it is a Morse code character/English character is
 '...' = 'S'
 '..' = 'I'
 '.' = 'E'
+
+to make less sophisticated will just check the first character to decide.
  */
   const testString = input;
   if (testString.charAt(0) === "." || testString.charAt(0) === "-") {

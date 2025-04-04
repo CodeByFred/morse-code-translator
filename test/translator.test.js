@@ -1,8 +1,10 @@
-import { autoDetect, inputToMorse, morseToText } from "../js/translator.js";
-
-export const invalidCharacters = new Error(
-  "You have entered invalid characters"
-);
+import {
+  autoDetect,
+  inputToMorse,
+  morseToText,
+  invalidCharacters,
+  invalidOrderOfInput,
+} from "../js/translator.js";
 
 describe("Translates only alphabetic characters to Morse code", () => {
   test("Should translate one word", () => {
@@ -13,7 +15,36 @@ describe("Translates only alphabetic characters to Morse code", () => {
     expect(inputToMorse("Fred Jack")).toBe("..-. .-. . -.. | .--- .- -.-. -.-");
   });
 
-  // test("Should translate characters, numbers and punctuation", () => {});
+  test("Should translate numbers to Morse code", () => {
+    expect(inputToMorse("12 9 45 8 4")).toBe(
+      ".---- ..--- | ----. | ....- ..... | ---.. | ....-"
+    );
+  });
+
+  test("Should translate characters, numbers and punctuation", () => {
+    expect(inputToMorse("az19. , ' ! ?")).toBe(
+      ".- --.. .---- ----. .-.-.- | --..-- | .----. | -.-.-- | ..--.."
+    );
+  });
+});
+
+describe("Throws error when given unacceptable input", () => {
+  test("Should throw error when given punctuation at start of input", () => {
+    expect(() => {
+      inputToMorse("? This is text");
+    }).toThrow(invalidOrderOfInput);
+  });
+
+  test("Should throw error when given non-accepted input", () => {
+    expect(() => {
+      inputToMorse("$");
+    }).toThrow(invalidCharacters);
+  });
+  test("Should throw error when given non-accepted input mixed with acceptable input ", () => {
+    expect(() => {
+      inputToMorse("F;red");
+    }).toThrow(invalidCharacters);
+  });
 });
 
 describe("Translates Morse code to text", () => {
@@ -29,23 +60,21 @@ describe("Translates Morse code to text", () => {
     ).toBe("MORSE CODE TRANSLATOR");
   });
 
-  test("Should translate characters, letters and/or punctuation into text", () => {
+  test("Should translate characters, letters and|or punctuation into text", () => {
     expect(
       morseToText(
         ".... . .-.. .-.. --- --..--  |  .. .----. -- .-.-.-  |  ..-. .-. . -.. ..--.."
       )
     ).toBe(`HELLO, I'M. FRED?`);
   });
-
-  // describe("Should throw errors if given incorrect input", () => {
-  //   expect(() => {
-  //     inputToMorse("F/red");
-  //   }).toThrow(invalidCharacters);
-  // });
 });
 
-// describe("Auto detect Morse code or English input and output the opposite", () => {
-//   test("Should detect Morse and output English", () => {
-//     expect(autoDetect("SOS")).toBe();
-//   });
-// });
+describe("Auto detect Morse code or English input and output the opposite", () => {
+  test("Should detect Morse code and output English", () => {
+    expect(autoDetect("SOS")).toBe("... --- ...");
+  });
+
+  test("Should detect text and output Morse code", () => {
+    expect(autoDetect("... --- ...")).toBe("SOS");
+  });
+});

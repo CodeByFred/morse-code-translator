@@ -1,4 +1,10 @@
-// import { invalidCharacters } from "../test/translator.test.js";
+export const invalidCharacters = new Error(
+  "You have entered invalid characters"
+);
+
+export const invalidOrderOfInput = new Error(
+  "You cannot put punctuation at the start of input"
+);
 
 const morseCodeCharacters = {
   A: ".-",
@@ -45,9 +51,6 @@ const morseCodeCharacters = {
 };
 
 export const inputToMorse = (text) => {
-  // if (!input) {
-  //   throw invalidCharacters;
-  // }
   return text
     .toUpperCase()
     .split("")
@@ -87,12 +90,7 @@ input -> string
 3. throw error if invalid character
 4. select correct method for translation
  */
-
 export const autoDetect = (input) => {
-  // if (!input) {
-  //   throw new Error("Input is invalid");
-  // }
-  const testString = input;
   /* 
 checking first index to see if it is a Morse code character/English character is tricky because:
 '.....' = '5'
@@ -101,11 +99,10 @@ checking first index to see if it is a Morse code character/English character is
 '..' = 'I'
 '.' = 'E'
  */
-  console.log(testString);
+  const testString = input;
   if (testString.charAt(0) === "." || testString.charAt(0) === "-") {
     return morseToText(input);
   } else {
-    console.log("Called inputToMorse()");
     return inputToMorse(input);
   }
 };

@@ -11,17 +11,20 @@
 
 <body>
     <header>
-        <h1>Morse Code Translator</h1>
-        <h2>-- --- .-. ... . | -.-. --- -.. . | - .-. .- -. ... .-.. .- - --- .-.</h2>
+        <h2>Morse Code Translator</h1>
+            <h2>-- --- .-. ... . | -.-. --- -.. . | - .-. .- -. ... .-.. .- - --- .-.</h2>
     </header>
     <main>
         <div class="input">
-            <textarea name="inputText" id="inputText" placeholder="Input Goes Here..." autocomplete="off"
+            <textarea name="inputText" id="inputText" placeholder="Enter Morse Code or Text..." autocomplete="off"
                 required></textarea>
             <h2>Input</h2>
         </div>
-        <button>Translate</button>
-
+        <div class="info">
+            <button>Translate</button>
+            <h3>Valid Characters</h3>
+            <p>[A-Z] [0-9] [. , ' ! ?]</p>
+        </div>
         <div class="output">
             <textarea name="outputText" id="outputText" placeholder="Output Comes Here..." readonly></textarea>
             <h2>Output</h2>

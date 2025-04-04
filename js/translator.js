@@ -38,16 +38,17 @@ const morseCodeCharacters = {
   9: "----.",
   ".": ".-.-.-",
   ",": "--..--",
+  "!": "-.-.--",
   "?": "..--..",
   "'": ".----.",
   " ": "|", // space between words
 };
 
-export const inputToMorse = (input) => {
-  if (!input) {
-    throw invalidCharacters;
-  }
-  return input
+export const inputToMorse = (text) => {
+  // if (!input) {
+  //   throw invalidCharacters;
+  // }
+  return text
     .toUpperCase()
     .split("")
     .map((ch) => morseCodeCharacters[ch] || "")
@@ -76,4 +77,35 @@ export const morseToText = (morse) => {
     );
   }
   return text.join("");
+};
+
+/* 
+input -> string
+
+1. split input into a string
+2. check first index of array
+3. throw error if invalid character
+4. select correct method for translation
+ */
+
+export const autoDetect = (input) => {
+  // if (!input) {
+  //   throw new Error("Input is invalid");
+  // }
+  const testString = input;
+  /* 
+checking first index to see if it is a Morse code character/English character is tricky because:
+'.....' = '5'
+'....' = 'H'
+'...' = 'S'
+'..' = 'I'
+'.' = 'E'
+ */
+  console.log(testString);
+  if (testString.charAt(0) === "." || testString.charAt(0) === "-") {
+    return morseToText(input);
+  } else {
+    console.log("Called inputToMorse()");
+    return inputToMorse(input);
+  }
 };

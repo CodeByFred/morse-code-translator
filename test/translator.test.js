@@ -1,4 +1,4 @@
-import { inputToMorse, morseToText } from "../js/translator.js";
+import { autoDetect, inputToMorse, morseToText } from "../js/translator.js";
 
 export const invalidCharacters = new Error(
   "You have entered invalid characters"
@@ -43,3 +43,9 @@ describe("Translates Morse code to text", () => {
   //   }).toThrow(invalidCharacters);
   // });
 });
+
+// describe("Auto detect Morse code or English input and output the opposite", () => {
+//   test("Should detect Morse and output English", () => {
+//     expect(autoDetect("SOS")).toBe();
+//   });
+// });

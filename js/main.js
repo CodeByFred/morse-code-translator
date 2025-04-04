@@ -1,8 +1,8 @@
-import { inputToMorse, morseToText } from "./translator.js";
+import { autoDetect } from "./translator.js";
 
 document.querySelector("button").addEventListener("click", (e) => {
   let data = document.querySelector("#inputText").value;
-  const translation = inputToMorse(data);
+  const translation = autoDetect(data);
   document.querySelector("#inputText").value = "";
-  console.log(translation);
+  document.querySelector("#outputText").value = translation;
 });

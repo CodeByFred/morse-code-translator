@@ -1,4 +1,7 @@
 export const invalidCharacters = new Error("You have entered invalid characters");
+export const invalidSequence = new Error(
+  "You have entered an invalid sequence of a Morse code character"
+);
 
 const morseCodeCharacters = {
   A: ".-",
@@ -60,8 +63,9 @@ export const inputToMorse = (text) => {
 
   for (let character of textArr) {
     let foundChar = morseCodeCharacters[character];
-    if (foundChar === undefined) throw invalidCharacters;
-    else morse.push(foundChar);
+    if (foundChar === undefined) {
+      throw invalidCharacters;
+    } else morse.push(foundChar);
   }
 
   return morse.join(" ");
@@ -72,7 +76,7 @@ input -> string
 
 1. split string into words on ' ';
 2. iterate over each word to convert each character from Morse to text
-3. throw error if invalid character
+3. throw error if invalid character or sequence
 4. concatenate each word back to a sentence
 5. return string
  */
@@ -85,8 +89,13 @@ export const morseToText = (morse) => {
     let foundChar = Object.keys(morseCodeCharacters).find(
       (ch) => morseCodeCharacters[ch] === character
     );
-    if (foundChar === undefined) throw invalidCharacters;
-    else text.push(foundChar);
+    if (foundChar === undefined && (character.includes(".") || character.includes("-"))) {
+      throw invalidSequence;
+    } else if (foundChar === undefined) {
+      throw invalidCharacters;
+    } else {
+      text.push(foundChar);
+    }
   }
   return text.join("");
 };

@@ -3,7 +3,6 @@ import {
   inputToMorse,
   morseToText,
   invalidCharacters,
-  invalidOrderOfInput,
 } from "../js/translator.js";
 
 describe("Translates only alphabetic characters to Morse code", () => {

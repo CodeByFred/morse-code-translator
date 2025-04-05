@@ -25,6 +25,7 @@ const morseCodeCharacters = {
   S: "...",
   T: "-",
   U: "..-",
+  V: "...-",
   W: ".--",
   X: "-..-",
   Y: "-.--",
@@ -86,6 +87,7 @@ export const morseToText = (morse) => {
   const text = [];
 
   for (let character of morseArr) {
+    console.log(character);
     let foundChar = Object.keys(morseCodeCharacters).find(
       (ch) => morseCodeCharacters[ch] === character
     );

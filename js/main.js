@@ -5,8 +5,10 @@ document.querySelector("button").addEventListener("click", () => {
   try {
     const translation = autoDetect(data);
     document.querySelector("#outputText").value = translation;
+    document.querySelector("#outputText").style.color = "black";
     document.querySelector("#inputText").value = "";
   } catch (error) {
     document.querySelector("#outputText").value = error;
+    document.querySelector("#outputText").style.color = "red";
   }
 });

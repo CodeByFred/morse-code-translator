@@ -3,6 +3,7 @@ import {
   inputToMorse,
   morseToText,
   invalidCharacters,
+  invalidSequence,
 } from "../js/translator.js";
 
 describe("Translates only alphabetic characters to Morse code", () => {
@@ -25,6 +26,12 @@ describe("Translates only alphabetic characters to Morse code", () => {
       ".- --.. .---- ----. .-.-.- | --..-- | .----. | -.-.-- | ..--.."
     );
   });
+
+  test("Should translate the alphabet", () => {
+    expect(inputToMorse("a b c d e f g h i j k l m n o p q r s t u v w x y z")).toBe(
+      ".- | -... | -.-. | -.. | . | ..-. | --. | .... | .. | .--- | -.- | .-.. | -- | -. | --- | .--. | --.- | .-. | ... | - | ..- | ...- | .-- | -..- | -.-- | --.."
+    );
+  });
 });
 
 describe("Throws error when given unacceptable input", () => {
@@ -44,6 +51,12 @@ describe("Throws error when given unacceptable input", () => {
       inputToMorse("F;red");
     }).toThrow(invalidCharacters);
   });
+
+  test("Should throw error when given an incorrect Morse code character that still contains a '.' or '-", () => {
+    expect(() => {
+      morseToText(".......");
+    }).toThrow(invalidSequence);
+  });
 });
 
 describe("Translates Morse code to text", () => {
@@ -57,12 +70,12 @@ describe("Translates Morse code to text", () => {
     ).toBe("MORSE CODE TRANSLATOR");
   });
 
-  test("Should translate characters, letters and/or punctuation into text", () => {
+  test("Should translate characters, numbers and/or punctuation into text", () => {
     expect(
       morseToText(
-        ".... . .-.. .-.. --- --..-- | .. .----. -- .-.-.- | ..-. .-. . -.. ..--.."
+        ".... . .-.. .-.. --- --..-- | .. .----. -- .-.-.- | ..-. .-. . -.. ..--.. | .---- ..--- ...-- | ....- | ..... -...."
       )
-    ).toBe("HELLO, I'M. FRED?");
+    ).toBe("HELLO, I'M. FRED? 123 4 56");
   });
 });
 

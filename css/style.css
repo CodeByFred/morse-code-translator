@@ -14,22 +14,50 @@ textarea {
   height: 100%;
   width: 75%;
   resize: none;
+  font-family: "Special Elite", system-ui;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1rem;
 }
 
 button {
   width: fit-content;
   align-self: center;
   margin: 25px;
+  font-family: "Special Elite", system-ui;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1rem;
+}
+
+h1 {
+  font-family: "Special Elite", system-ui;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-family: "Special Elite", system-ui;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1.25rem;
 }
 
 h3 {
   text-align: center;
   margin: 0;
+  font-family: "Special Elite", system-ui;
+  font-weight: 400;
+  font-style: normal;
   font-size: 1rem;
 }
 
 p {
   text-align: center;
+  font-family: "Special Elite", system-ui;
+  font-weight: 400;
+  font-style: normal;
   font-size: 0.8rem;
   margin: 10px 0;
 }
